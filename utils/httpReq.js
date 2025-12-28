@@ -1,3 +1,5 @@
+import { showModal } from "./modal.js";
+
 const BASE_URL = `https://api.openweathermap.org/data/2.5/`;
 const API_KEY = "50f692f0042a1842fcc78e0ae81d1e2c";
 
@@ -28,13 +30,13 @@ const getWeatherData = async (type, data) => {
   try {
     const response = await fetch(url);
     const json = await response.json();
-    if (+json.code === 200) {
+    if (json.code === 200) {
       return json;
     } else {
-      alert(json.message);
+      showModal(json.message);
     }
   } catch (error) {
-    console.log("An error occurred when fetching data");
+    showModal("An error occurred when fetching data");
   }
 };
 
